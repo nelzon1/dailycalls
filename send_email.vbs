@@ -16,7 +16,7 @@ Dim ol, ns, newMail
 Dim realAttachment
 MyTime = Date
 
-Set objFileToRead = CreateObject("Scripting.FileSystemObject").OpenTextFile("C:\coding\Agent Queue Analysis\date.txt",1)
+Set objFileToRead = CreateObject("Scripting.FileSystemObject").OpenTextFile("C:\coding\dailycalls\date.txt",1)
 RunDate = objFileToRead.ReadAll()
 objFileToRead.Close
 Set objFileToRead = Nothing
