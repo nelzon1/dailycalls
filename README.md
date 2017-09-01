@@ -6,7 +6,7 @@ Create a folder in your c:\ drive called 'coding'. Move to this folder and execu
 
 git clone https://github.com/nelzon1/dailycalls.git
 
-this should create a folder called "Agent Queue Analysis"
+this should create a folder called "dailycalls"
 
 This requires Python 3.6 
   sqlite3
