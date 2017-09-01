@@ -23,7 +23,7 @@ Public Sub Main()
 '## Parameters.Add "*","_EndProperties"
 '## Parameters.Add "*","_BeginViews"
 '## Parameters.Add "*","_EndViews"
-'## Parameters.Add "C:\coding\Agent Queue Analysis\daily_phone.txt","_Output"
+'## Parameters.Add "C:\coding\dailycalls\daily_phone.txt","_Output"
 '## Parameters.Add "59","_FldSep"
 '## Parameters.Add "0","_TextDelim"
 '## Parameters.Add "True","_NullToZero"
@@ -65,7 +65,7 @@ Public Sub Main()
 	
 	
 
-	      b = Rep.ExportData("C:\coding\Agent Queue Analysis\daily_phone.txt", 59, 0, True, True, True)
+	      b = Rep.ExportData("C:\coding\dailycalls\daily_phone.txt", 59, 0, True, True, True)
 
 	
 
