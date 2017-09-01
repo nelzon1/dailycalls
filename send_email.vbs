@@ -24,7 +24,7 @@ Set objFileToRead = Nothing
 ToAddress = "ActiveNetSupportInternal@activenetwork.com"
 MessageSubject = RunDate
 MessageBody = "Stats Attached" & vbCrLf & "Produced at " & MyTime
-MessageAttachment = "C:\coding\Agent Queue Analysis\daily_calls.png"
+      MessageAttachment = "C:\coding\dailycalls\daily_calls.png"
 
 Set objOutlook = CreateObject("Outlook.Application")
 'Set ns = objOutlook.GetNamespace("MAPI")
