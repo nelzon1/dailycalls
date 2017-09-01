@@ -19,7 +19,7 @@ Public Sub Main()
 '## Parameters.Add "The report Historical\Split/Skill\Report Daily was not found on ACD 1.","_ReportNotFound"
 '## Parameters.Add "*","_BeginProperties"
 '## Parameters.Add "554","Split/Skill"
-'## Parameters.Add "08/30/17","Date"
+'## Parameters.Add "08/31/17","Date"
 '## Parameters.Add "*","_EndProperties"
 '## Parameters.Add "*","_BeginViews"
 '## Parameters.Add "*","_EndViews"
@@ -60,7 +60,7 @@ Public Sub Main()
 	
 	      Rep.SetProperty "Split/Skill","554"
 	
-	      Rep.SetProperty "Date","08/30/17"
+	      Rep.SetProperty "Date","08/31/17"
 	
 	
 	
