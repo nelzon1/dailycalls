@@ -1,0 +1,86 @@
+'SERVERNAME=10.220.193.30
+
+Public Sub Main()
+
+'## cvs_cmd_begin
+'## ID = 2001
+'## Description = "Report: Historical: Split/Skill: Report Daily: Export Data"
+'## Parameters.Add "Report: Historical: Split/Skill: Report Daily: Export Data","_Desc"
+'## Parameters.Add "Reports","_Catalog"
+'## Parameters.Add "2","_Action"
+'## Parameters.Add "1","_Quit"
+'## Parameters.Add "Historical\Split/Skill\Report Daily","_Report"
+'## Parameters.Add "1","_ACD"
+'## Parameters.Add "5835","_Top"
+'## Parameters.Add "7560","_Left"
+'## Parameters.Add "13710","_Width"
+'## Parameters.Add "6360","_Height"
+'## Parameters.Add "default","_TimeZone"
+'## Parameters.Add "The report Historical\Split/Skill\Report Daily was not found on ACD 1.","_ReportNotFound"
+'## Parameters.Add "*","_BeginProperties"
+'## Parameters.Add "554","Split/Skill"
+'## Parameters.Add "08/30/17","Date"
+'## Parameters.Add "*","_EndProperties"
+'## Parameters.Add "*","_BeginViews"
+'## Parameters.Add "*","_EndViews"
+'## Parameters.Add "C:\coding\Agent Queue Analysis\daily_phone.txt","_Output"
+'## Parameters.Add "59","_FldSep"
+'## Parameters.Add "0","_TextDelim"
+'## Parameters.Add "True","_NullToZero"
+'## Parameters.Add "True","_Labels"
+'## Parameters.Add "True","_DurSecs"
+
+   On Error Resume Next
+
+   cvsSrv.Reports.ACD = 1
+   Set Info = cvsSrv.Reports.Reports("Historical\Split/Skill\Report Daily")
+
+   If Info Is Nothing Then
+	  If cvsSrv.Interactive Then
+		  MsgBox "The report Historical\Split/Skill\Report Daily was not found on ACD 1.", vbCritical Or vbOKOnly, "Avaya CMS Supervisor"
+	  Else
+	   	  Set Log = CreateObject("ACSERR.cvsLog") 
+		  Log.AutoLogWrite "The report Historical\Split/Skill\Report Daily was not found on ACD 1."
+		  Set Log = Nothing
+	  End If
+   Else
+
+	   b = cvsSrv.Reports.CreateReport(Info,Rep)
+	   If b Then
+	
+	      Rep.Window.Top = 5835
+	      Rep.Window.Left = 7560
+	      Rep.Window.Width = 13710
+	      Rep.Window.Height = 6360        
+	
+
+                        Rep.TimeZone = "default"
+
+
+	
+	      Rep.SetProperty "Split/Skill","554"
+	
+	      Rep.SetProperty "Date","08/30/17"
+	
+	
+	
+
+	      b = Rep.ExportData("C:\coding\Agent Queue Analysis\daily_phone.txt", 59, 0, True, True, True)
+
+	
+
+	
+
+	      Rep.Quit
+
+	
+
+              If Not cvsSrv.Interactive Then cvsSrv.ActiveTasks.Remove Rep.TaskID
+	      Set Rep = Nothing
+	   End If
+
+   End If
+   Set Info = Nothing
+'## cvs_cmd_end
+
+End Sub

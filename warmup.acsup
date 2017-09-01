@@ -1,0 +1,77 @@
+'LANGUAGE=ENU
+'SERVERNAME=10.220.193.30
+Public Sub Main()
+
+'## cvs_cmd_begin
+'## ID = 2001
+'## Description = "Report: Historical: Split/Skill: Report Daily: Display"
+'## Parameters.Add "Report: Historical: Split/Skill: Report Daily: Display","_Desc"
+'## Parameters.Add "Reports","_Catalog"
+'## Parameters.Add "4","_Action"
+'## Parameters.Add "0","_Quit"
+'## Parameters.Add "Historical\Split/Skill\Report Daily","_Report"
+'## Parameters.Add "1","_ACD"
+'## Parameters.Add "5835","_Top"
+'## Parameters.Add "7560","_Left"
+'## Parameters.Add "13695","_Width"
+'## Parameters.Add "6345","_Height"
+'## Parameters.Add "default","_TimeZone"
+'## Parameters.Add "The report Historical\Split/Skill\Report Daily was not found on ACD 1.","_ReportNotFound"
+'## Parameters.Add "*","_BeginProperties"
+'## Parameters.Add "471","Split/Skill"
+'## Parameters.Add "06/24/17","Date"
+'## Parameters.Add "*","_EndProperties"
+'## Parameters.Add "*","_BeginViews"
+'## Parameters.Add "*","_EndViews"
+
+   On Error Resume Next
+
+   cvsSrv.Reports.ACD = 1
+   Set Info = cvsSrv.Reports.Reports("Historical\Split/Skill\Report Daily")
+
+   If Info Is Nothing Then
+	  If cvsSrv.Interactive Then
+		  MsgBox "The report Historical\Split/Skill\Report Daily was not found on ACD 1.", vbCritical Or vbOKOnly, "Avaya CMS Supervisor"
+	  Else
+	   	  Set Log = CreateObject("ACSERR.cvsLog") 
+		  Log.AutoLogWrite "The report Historical\Split/Skill\Report Daily was not found on ACD 1."
+		  Set Log = Nothing
+	  End If
+   Else
+
+	   b = cvsSrv.Reports.CreateReport(Info,Rep)
+	   If b Then
+	
+	      Rep.Window.Top = 5835
+	      Rep.Window.Left = 7560
+	      Rep.Window.Width = 13695
+	      Rep.Window.Height = 6345        
+	
+
+                        Rep.TimeZone = "default"
+
+
+	
+	      Rep.SetProperty "Split/Skill","471"
+	
+	      Rep.SetProperty "Date","06/23/17"
+	
+	
+	
+
+	      b = Rep.Run
+		  Rep.Quit
+
+	
+
+	
+
+              If Not cvsSrv.Interactive Then cvsSrv.ActiveTasks.Remove Rep.TaskID
+	      Set Rep = Nothing
+	   End If
+
+   End If
+   Set Info = Nothing
+'## cvs_cmd_end
+
+End Sub
